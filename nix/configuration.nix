@@ -32,7 +32,7 @@
    # layout  = "cz";
   #  variant = "winkeys-qwerty";
  # };
-
+  nixpkgs.config.allowUnfree = true;
   #až k useru je tohle nastaveni nvidia grafiky + zapnuti hyprlandu  
   programs.hyprland = {
     enable = true;
@@ -47,10 +47,9 @@
   hardware = {
     graphics.enable = true;
     nvidia.modesetting.enable = true;
+    nvidia.open = true;
+    nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk ];
 
   users.users.damiska = {
     isNormalUser = true;
