@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+#turn on ssh agent and  add the key
+eval "$(ssh-agent -s)"
+
+ssh-add ~/.ssh/github
+
 #shoutout chatu za tenhle script
 ahead=$(git rev-list --count origin/master..HEAD)
 

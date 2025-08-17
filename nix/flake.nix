@@ -34,16 +34,17 @@
           # Enable the NixOS Steam module
           programs.steam.enable   = true;
 
-	  
           fonts.fontconfig.enable = true;
 
           # Install your system packages
           environment.systemPackages = with pkgs; [
-            kitty zsh git unzip
-            waybar rofi-wayland swww networkmanagerapplet
-            brightnessctl pcmanfm syncthing
-            bottles steam
-            spotify discord beeper obsidian
+            kitty zsh git gh unrar fastfetch
+            waybar rofi-wayland swww networkmanagerapplet hyprcursor pavucontrol oh-my-posh
+            brightnessctl pcmanfm syncthing file-roller qimgv
+	    # neovim unzip gnumake libgcc ripgrep fd
+            bottles steam godot
+            spotify discord beeper obsidian zed-editor kanata
+	    prismlauncher jdk17 #minecraft
 
             # zen-browser from the external flake:
             zen-browser.packages.${system}.twilight-official
@@ -54,8 +55,7 @@
           ];
 
         }
-      ];        
+      ];
       }; #nixosSystem
   }; #in
 }
-

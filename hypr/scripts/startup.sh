@@ -8,4 +8,5 @@ waybar &
 
 nm-applet &
 
-syncthing
+#neotevře mi gui v browseru vždycky při startupu
+syncthing --no-browser
