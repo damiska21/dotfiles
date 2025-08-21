@@ -5,6 +5,8 @@
     ./hardware-configuration.nix
   ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   boot.loader.systemd-boot.enable     = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -26,14 +28,8 @@
     LC_TIME            = "cs_CZ.UTF-8";
   };
 
-  #console.keyMap = "cz-lat2";
-
-  #services.xserver.xkb = {
-   # layout  = "cz";
-  #  variant = "winkeys-qwerty";
- # };
   nixpkgs.config.allowUnfree = true;
-  #až k useru je tohle nastaveni nvidia grafiky + zapnuti hyprlandu  
+  #až k useru je tohle nastaveni nvidia grafiky + zapnuti hyprlandu
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -55,11 +51,37 @@
     isNormalUser = true;
     shell = pkgs.zsh;
     description  = "damiska";
-    extraGroups  = [ "networkmanager" "wheel" ];
+    extraGroups  = [ "networkmanager" "wheel" "input" ];
   };
 
   programs.zsh.enable = true;
-  
+
+#kanata (keyboard remapper) nastavení na fungování přes hypr
+  services.kanata.enable = true;
+  boot.kernelModules = [ "uinput" ];
+
+  services.udev.extraRules = ''
+    KERNEL=="uinput", MODE="0660", GROUP="input", OPTIONS+="static_node=uinput"
+  '';
+
+  systemd.user.services.kanata = {
+    description = "Kanata keyboard remapper";
+    after = [ "graphical-session.target" ];
+    wantedBy = [ "default.target" ];
+
+    serviceConfig = {
+      ExecStart = "${pkgs.kanata}/bin/kanata -c /home/damiska/.config/kanata/config.yaml";
+      Restart = "always";
+
+      # jen priority věci, co systemd user dovolí
+      IOSchedulingClass = "realtime";
+      Nice = -10;
+    };
+  };
+
+  services.gvfs.enable = true;
+  programs.fuse.userAllowOther = true;
+
   #automatickej update všech packages
   system.autoUpgrade.enable = true;
   system.autoUpgrade.dates = "weekly";
