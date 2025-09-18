@@ -6,7 +6,9 @@
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  #nix.settings.trusted-users = [ "root" "damiska" ];
 
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.loader.systemd-boot.enable     = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -28,6 +30,30 @@
     LC_TIME            = "cs_CZ.UTF-8";
   };
 
+
+  #bluetooth
+  hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings.General = {
+        experimental = true; # show battery
+        # https://www.reddit.com/r/NixOS/comments/1ch5d2p/comment/lkbabax/
+        Privacy = "device";
+        JustWorksRepairing = "always";
+        Class = "0x000100";
+        FastConnectable = true;
+      };
+    };
+  services.blueman.enable = true;
+  hardware.xpadneo.enable = true;
+  boot = {
+      extraModulePackages = with config.boot.kernelPackages; [ xpadneo ];
+      extraModprobeConfig = ''
+        options bluetooth disable_ertm=Y
+      '';
+      # connect xbox controller
+    };
+
   nixpkgs.config.allowUnfree = true;
   #až k useru je tohle nastaveni nvidia grafiky + zapnuti hyprlandu
   programs.hyprland = {
@@ -47,15 +73,19 @@
     nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
+  programs.adb.enable = true; # kvůli android devu
+
   users.users.damiska = {
     isNormalUser = true;
     shell = pkgs.zsh;
     description  = "damiska";
-    extraGroups  = [ "networkmanager" "wheel" "input" ];
+    extraGroups  = [ "networkmanager" "wheel" "input" "kvm" "adbusers"];
   };
+  networking.firewall.allowedTCPPorts = [ 8081 ];
 
   programs.zsh.enable = true;
 
+  services.twingate.enable = true;
 #kanata (keyboard remapper) nastavení na fungování přes hypr
   services.kanata.enable = true;
   boot.kernelModules = [ "uinput" ];

@@ -21,6 +21,7 @@ if [ "$STATE" = "off" ]; then
     hyprctl keyword decoration:rounding 0
     hyprctl keyword general:gaps_in 0
     hyprctl keyword general:gaps_out 0
+    hyprctl keyword general:border_size 0
 else
     # --- Vypnout zen mód ---
     echo "off" > "$STATE_FILE"
@@ -28,4 +29,5 @@ else
     hyprctl keyword decoration:rounding "$ROUNDING_DEFAULT"
     hyprctl keyword general:gaps_in "$GAPS_IN_DEFAULT"
     hyprctl keyword general:gaps_out "$GAPS_OUT_DEFAULT"
+    hyprctl keyword general:border_size 2
 fi

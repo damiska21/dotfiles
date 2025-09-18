@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url     = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -8,27 +8,36 @@
   };
 
   outputs = { self, nixpkgs, zen-browser, ... }:
-  let #let jsou definice variables uvnitř funkce startující s in
+  let
     system = "x86_64-linux";
+
     pkgs = import nixpkgs {
-    system = "x86_64-linux";
-    config = {
-      allowUnfree = true;
+      inherit system;
+      config = {
+        android_sdk.accept_license = true;
+        allowUnfree = true;
+      };
     };
-  };
+
+    buildToolsVersion = "34.0.0";
+
+    androidComposition = pkgs.androidenv.composeAndroidPackages {
+      buildToolsVersions = [ buildToolsVersion ];
+      platformVersions   = [ "34" ];
+      abiVersions        = [ "arm64-v8a" ];
+    };
+
+    androidSdk = androidComposition.androidsdk;
+
   in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-	modules = [
-
-        # a) your existing configuration.nix (hardware, basic settings…)
+      inherit system;
+      modules = [
         ./configuration.nix
-
-        # b) A small inline module to turn on unfree + Steam + packages
         {
           nixpkgs.config.allowUnfree = true;
-          programs.steam.enable   = true;
-          # Install your system packages
+          programs.steam.enable = true;
+
           environment.systemPackages = import ./packages.nix {
             inherit pkgs system;
             zen-browser = zen-browser;
@@ -38,9 +47,17 @@
           fonts.packages = with pkgs; [
             nerd-fonts.jetbrains-mono
           ];
-
         }
       ];
-      }; #nixosSystem
-  }; #in
+    };
+
+    devShell = pkgs.mkShell {
+      ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
+      buildInputs = [
+        pkgs.flutter
+        androidSdk
+        pkgs.jdk11
+      ];
+    };
+  };
 }
