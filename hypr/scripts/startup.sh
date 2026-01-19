@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-
-swww-daemon &
-
-swww img /home/damiska/Pictures/wallpaper/1.jpg &
+~/.config/hypr/scripts/start-swww.sh &
 
 waybar &
 
@@ -11,4 +8,7 @@ nm-applet &
 #neotevře mi gui v browseru vždycky při startupu
 syncthing --no-browser &
 
-kanata -c /home/damiska/.config/kanata/main.kbd
+kanata -c /home/damiska/.config/kanata/main.kbd &
+
+hyprlock
+
