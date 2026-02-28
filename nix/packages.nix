@@ -21,22 +21,23 @@ with pkgs;
   #basic programy
   qimgv syncthing file-roller vlc gparted qalculate-qt
   #advanced programy
-  bottles spotify discord beeper anki twingate audacity
+  bottles spotify discord beeper anki twingate audacity keepassxc
   steam gamemode protonup-qt mangohud
   #obsidian
   obsidian nodejs_22 # node na quartz
   #game dev / coding
-  vscodium libresprite android-studio code-cursor
+  vscode libresprite android-studio code-cursor opencode 
+  python315
   godotPackages_4_5.godot
   #keyboard remapper
   kanata
   #minecraft
   prismlauncher jdk17
-  #running avalonia apps (hollow knight mods)
-  #libICE libSM libX11 libXcursor libXrandr libXrender libXi
-  devenv
+  devenv direnv
   #hacking
   p7zip rpi-imager
+
+  termius #ssh klient
 
 docker
   ntfs3g
