@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd ~/.dotfiles/
+
 #turn on ssh agent and  add the key
 eval "$(ssh-agent -s)"
 

@@ -15,6 +15,8 @@
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
+  powerManagement.cpuFreqGovernor = "performance";
+
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "damiska" ];
   virtualisation.virtualbox.host.enableExtensionPack = true;
@@ -38,17 +40,17 @@
 
   #bluetooth
   hardware.bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-      settings.General = {
-        experimental = true; # show battery
-        # https://www.reddit.com/r/NixOS/comments/1ch5d2p/comment/lkbabax/
-        Privacy = "device";
-        JustWorksRepairing = "always";
-        Class = "0x000100";
-        FastConnectable = true;
-      };
+    enable = true;
+    powerOnBoot = true;
+    settings.General = {
+      experimental = true; # show battery
+      # https://www.reddit.com/r/NixOS/comments/1ch5d2p/comment/lkbabax/
+      Privacy = "device";
+      JustWorksRepairing = "always";
+      Class = "0x000100";
+      FastConnectable = true;
     };
+  };
   services.blueman.enable = true;
   hardware.xpadneo.enable = true;
   boot = {
@@ -57,27 +59,26 @@
         options bluetooth disable_ertm=Y
       '';
       # connect xbox controller
-    };
-    services.pipewire = {
-  enable = true;
-  pulse.enable = true;
-  alsa.enable = true;
-  alsa.support32Bit = true;
-  wireplumber.enable = true;
-  wireplumber.extraConfig = {
-    "00-bluetooth-policy" = {
-      "bluez-monitor.rules" = [
+  };
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    wireplumber.enable = true;
+    wireplumber.extraConfig = {
+      "00-bluetooth-policy" = {
+        "bluez-monitor.rules" = [
         {
           matches = [{ "device.name" = "~bluez_card.*"; }];
           actions.update-props = {
             "bluez5.reconnect-profiles" = [ "a2dp-sink" ];
             "bluez5.profiles" = [ "a2dp-sink" ];
           };
-        }
-      ];
+        }];
+      };
     };
   };
-};
 
   nixpkgs.config.allowUnfree = true;
   #až k useru je tohle nastaveni nvidia grafiky + zapnuti hyprlandu
@@ -99,17 +100,28 @@
     nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   hardware.nvidia.prime = {
-    offload.enable = true;
-    intelBusId = "PCI:5:0:0";
+    offload = {
+      enable = true;
+      enableOffloadCmd = true;
+    };
+    amdgpuBusId = "PCI:5:0:0";
     nvidiaBusId = "PCI:1:0:0";
   };
   hardware.graphics.extraPackages = with pkgs; [
     mesa
+    mesa-demos
     vulkan-loader
+    vulkan-tools
     vulkan-validation-layers
     mangohud
   ];
-
+  programs.steam.enable = true;
+programs.steam.package = pkgs.steam.override {
+  extraEnv = {
+    __NV_PRIME_RENDER_OFFLOAD = "1";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  };
+};
   programs.hyprlock.enable = true;
   programs.adb.enable = true; # kvůli android devu
 
@@ -121,8 +133,8 @@
   };
 
   #networking.firewall.allowedTCPPorts = [ 8081 ];#expo go
-virtualisation.docker.enable = true;
-hardware.nvidia-container-toolkit.enable = true;
+  virtualisation.docker.enable = true;
+  hardware.nvidia-container-toolkit.enable = true;
 
   programs.zsh.enable = true;
 

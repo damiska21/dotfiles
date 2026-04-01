@@ -22,7 +22,7 @@ with pkgs;
   qimgv syncthing file-roller vlc gparted qalculate-qt
   #advanced programy
   bottles spotify discord beeper anki twingate audacity keepassxc
-  steam gamemode protonup-qt mangohud
+  gamemode protonup-qt mangohud gamescope
   #obsidian
   obsidian nodejs_22 # node na quartz
   #game dev / coding
