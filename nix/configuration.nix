@@ -7,8 +7,7 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.trusted-users = [ "root" "damiska" ];
-
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable     = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -52,9 +51,8 @@
     };
   };
   services.blueman.enable = true;
-  hardware.xpadneo.enable = true;
   boot = {
-      extraModulePackages = with config.boot.kernelPackages; [ xpadneo rtw88];#rtw je kernel na ac600
+      extraModulePackages = with config.boot.kernelPackages; [ rtw88];#rtw je kernel na ac600
       extraModprobeConfig = ''
         options bluetooth disable_ertm=Y
       '';
@@ -99,31 +97,28 @@
     nvidia.open = false;
     nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-  hardware.nvidia.prime = {
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
-    amdgpuBusId = "PCI:5:0:0";
-    nvidiaBusId = "PCI:1:0:0";
-  };
-  hardware.graphics.extraPackages = with pkgs; [
-    mesa
-    mesa-demos
-    vulkan-loader
-    vulkan-tools
-    vulkan-validation-layers
-    mangohud
-  ];
-  programs.steam.enable = true;
-programs.steam.package = pkgs.steam.override {
-  extraEnv = {
-    __NV_PRIME_RENDER_OFFLOAD = "1";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-  };
+  programs.steam = {
+  enable = true;
 };
+
   programs.hyprlock.enable = true;
   programs.adb.enable = true; # kvůli android devu
+
+# x11 wm na hraní
+services.xserver = {
+  enable = true;
+  windowManager.i3.enable = true;
+displayManager.startx.enable = true;
+  xkb.layout = "cz";
+  resolutions = [
+    {
+      x = 1920;
+      y = 1080;
+    }
+  ];
+      dpi = 800;
+};
+services.libinput.enable = true;
 
   users.users.damiska = {
     isNormalUser = true;

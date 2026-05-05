@@ -5,7 +5,7 @@ with pkgs;
 
 [
   #terminál
-  kitty fastfetch zsh oh-my-posh
+  kitty fastfetch zsh oh-my-posh lsd
   #git a jeho auth
   git gh
   #desktop veci: top bar, otevirac programu, wallpaper, sit, kurzor
@@ -19,10 +19,12 @@ with pkgs;
   #file manager a jeho dependencies
   nemo nemo-fileroller
   #basic programy
-  qimgv syncthing file-roller vlc gparted qalculate-qt
+  qimgv syncthing file-roller vlc gparted qalculate-qt micro
   #advanced programy
   bottles spotify discord beeper anki twingate audacity keepassxc
   gamemode protonup-qt mangohud gamescope
+  #x11 wm
+  xorg.xinit xorg.xorgserver xorg.xauth
   #obsidian
   obsidian nodejs_22 # node na quartz
   #game dev / coding
