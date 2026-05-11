@@ -3,15 +3,22 @@
     nixpkgs.url = "nixpkgs/nixos-25.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     affinity-nix.url = "github:mrshmllow/affinity-nix";
+    matugen.url = "github:InioX/Matugen";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    helium = {
+      url = "github:schembriaiden/helium-browser-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, zen-browser, unstable, affinity-nix, ... }:
+  outputs = { self, nixpkgs, zen-browser, unstable, affinity-nix, matugen, helium, ... }:
   let
     system = "x86_64-linux";
+    kver = config.boot.kernelPackages.kernel.version;
+    
 
     pkgs = import nixpkgs {
       inherit system;
@@ -54,6 +61,8 @@
           }++ [
             # packages from unstable go here like this pkgsUnstable.audacity
             affinity-nix.packages.${system}.v3
+            matugen.packages.${system}.default
+            helium.packages.${system}.default
           ];
 
           fonts.fontconfig.enable = true;

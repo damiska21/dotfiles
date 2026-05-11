@@ -22,7 +22,7 @@ with pkgs;
   qimgv syncthing file-roller vlc gparted qalculate-qt micro
   #advanced programy
   bottles spotify discord beeper anki twingate audacity keepassxc
-  gamemode protonup-qt mangohud gamescope
+  protonup-qt mangohud
   #x11 wm
   xorg.xinit xorg.xorgserver xorg.xauth
   #obsidian

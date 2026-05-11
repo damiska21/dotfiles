@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    <nixos-hardware/lenovo/ideapad/15arh05>
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -19,7 +20,6 @@ boot.kernelPackages = pkgs.linuxPackages_latest;
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "damiska" ];
   virtualisation.virtualbox.host.enableExtensionPack = true;
-  boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
 
   time.timeZone = "Europe/Prague";
 
@@ -93,38 +93,30 @@ boot.kernelPackages = pkgs.linuxPackages_latest;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
     graphics.enable = true;
-    nvidia.modesetting.enable = true;
-    nvidia.open = false;
+    nvidia = {
+    	open = false;
+    	prime.nvidiaBusId = "PCI:1:0:0";
+    	prime.amdgpuBusId = "PCI:5:0:0";
+    	nvidiaSettings = true;
+    	package = config.boot.kernelPackages.nvidiaPackages.stable;
+    }
     nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   programs.steam = {
-  enable = true;
-};
-
+    enable = true;
+  };
+    programs.gamemode.enable = true;
+    programs.gamemode.enableRenice = true;
+  
   programs.hyprlock.enable = true;
   programs.adb.enable = true; # kvůli android devu
 
-# x11 wm na hraní
-services.xserver = {
-  enable = true;
-  windowManager.i3.enable = true;
-displayManager.startx.enable = true;
-  xkb.layout = "cz";
-  resolutions = [
-    {
-      x = 1920;
-      y = 1080;
-    }
-  ];
-      dpi = 800;
-};
-services.libinput.enable = true;
 
   users.users.damiska = {
     isNormalUser = true;
     shell = pkgs.zsh;
     description  = "damiska";
-    extraGroups  = [ "networkmanager" "wheel" "input" "kvm" "adbusers" "dialout" "plugdev" "docker" "wireshark"];
+    extraGroups  = [ "networkmanager" "wheel" "input" "kvm" "adbusers" "dialout" "plugdev" "docker" "wireshark" "gamemode"];
   };
 
   #networking.firewall.allowedTCPPorts = [ 8081 ];#expo go
