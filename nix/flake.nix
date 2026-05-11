@@ -12,9 +12,10 @@
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, zen-browser, unstable, affinity-nix, matugen, helium, ... }:
+  outputs = { self, nixpkgs, nixos-hardware, zen-browser, unstable, affinity-nix, matugen, helium, ... }:
   let
     system = "x86_64-linux";
     kver = config.boot.kernelPackages.kernel.version;
@@ -71,6 +72,7 @@
             ipafont #normal japanese font, the default one is pretty much unreadable
           ];
         }
+        nixos-hardware.nixosModules.lenovo-ideapad-15arh05
       ];
     };
   };

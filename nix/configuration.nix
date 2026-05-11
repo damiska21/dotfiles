@@ -3,19 +3,16 @@
 {
   imports = [
     ./hardware-configuration.nix
-    <nixos-hardware/lenovo/ideapad/15arh05>
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.trusted-users = [ "root" "damiska" ];
-boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable     = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-
-  powerManagement.cpuFreqGovernor = "performance";
 
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "damiska" ];
@@ -93,14 +90,6 @@ boot.kernelPackages = pkgs.linuxPackages_latest;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
     graphics.enable = true;
-    nvidia = {
-    	open = false;
-    	prime.nvidiaBusId = "PCI:1:0:0";
-    	prime.amdgpuBusId = "PCI:5:0:0";
-    	nvidiaSettings = true;
-    	package = config.boot.kernelPackages.nvidiaPackages.stable;
-    }
-    nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   programs.steam = {
     enable = true;
@@ -180,6 +169,6 @@ boot.kernelPackages = pkgs.linuxPackages_latest;
   programs.wireshark.usbmon.enable = true;
   networking.firewall.interfaces."eno1".allowedTCPPorts = [ 4444 ];
   networking.networkmanager.unmanaged = [
-  "interface-name:enp5s0f4u2"
-];
+    "interface-name:enp5s0f4u2"
+  ];
 }
