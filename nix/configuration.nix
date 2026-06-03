@@ -7,7 +7,6 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.trusted-users = [ "root" "damiska" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable     = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -93,6 +92,13 @@
   };
   programs.steam = {
     enable = true;
+  };
+  programs = {
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
+    steam.gamescopeSession.enable = true;
   };
     programs.gamemode.enable = true;
     programs.gamemode.enableRenice = true;
