@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-swww-daemon &
+awww-daemon --no-cache &
 
 WALLDIR="$HOME/Pictures/wallpaper"
 FILE=$(find "$WALLDIR" -type f | shuf -n 1)

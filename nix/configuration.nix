@@ -96,7 +96,7 @@
   programs = {
     gamescope = {
       enable = true;
-      capSysNice = true;
+      #capSysNice = true;
     };
     steam.gamescopeSession.enable = true;
   };
@@ -104,7 +104,6 @@
     programs.gamemode.enableRenice = true;
   
   programs.hyprlock.enable = true;
-  programs.adb.enable = true; # kvůli android devu
 
 
   users.users.damiska = {

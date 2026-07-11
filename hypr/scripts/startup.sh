@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-~/.config/hypr/scripts/start-swww.sh &
+~/.config/hypr/scripts/start-awww.sh &
 
 waybar &
 

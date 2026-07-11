@@ -5,11 +5,11 @@ with pkgs;
 
 [
   #terminál
-  kitty fastfetch zsh oh-my-posh lsd
+  kitty fastfetch zsh oh-my-posh lsd btop
   #git a jeho auth
   git gh
-  #desktop veci: top bar, otevirac programu, wallpaper, sit, kurzor
-  waybar rofi swww networkmanagerapplet hyprcursor
+  #desktop veci: top bar, otevirac programu, wallpaper, sit, kurzor, color picker
+  waybar rofi awww networkmanagerapplet hyprcursor hyprpicker
   #bluetooth
   bluez blueman
   #simple screenshot a screencapture
@@ -22,9 +22,9 @@ with pkgs;
   qimgv syncthing file-roller vlc gparted qalculate-qt micro
   #advanced programy
   bottles spotify discord beeper anki twingate audacity keepassxc
-  protonup-qt mangohud reaper
+  heroic protonup-qt protonplus mangohud reaper orca-slicer
   #x11 wm
-  xorg.xinit xorg.xorgserver xorg.xauth
+  xinit xorgserver xauth
   #obsidian
   obsidian nodejs_22 # node na quartz
   #game dev / coding
@@ -38,7 +38,7 @@ with pkgs;
   devenv direnv
   #hacking
   p7zip rpi-imager
-
+  transmission_4 #torrent klient
   termius #ssh klient
 
 docker

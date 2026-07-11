@@ -1,68 +1,24 @@
-// by Binary Harbinger
 {
-    "layer": "top",
-    "position": "top",
-    "mod": "dock",
-    "exclusive": true,
-    "gtk-layer-shell": true,
-    "margin-top": 6, "margin-bottom": 0,
-    "passthrough": false,
-    "height": 27,
+  "style":"~/.config/waybar/style.css",
+  "layer": "top",
+  "height": 40,
+  "spacing": 0,
+  "modules-left": [
+    "clock"
+  ],
 
-    "modules-left": ["group/leftSide"],
-    "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["tray", "group/rightSide"],
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
 
-    "hyprland/language": {
-        "format": "{}",
-        "format-en": "ENG",
-        "format-tr": "TR"
-},
+  "modules-right": [
+    "tray",
+    "cpu",
+    "pulseaudio",
+    "battery"
+  ],
 
-"bluetooth": {
-
-    "format": "",
-    "format-connected": " {device_alias}",
-    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-
-    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-
-    "on-click": "blueman-manager"
-},
-
-"battery": {
-    "states": {"good": 95, "warning": 30, "critical": 20},
-
-    "format": "{icon}",
-    "format-charging": " ",
-    "format-plugged": " ",
-    "format-alt": "{time} {icon}",
-
-    "format-alt-icons": [
-        "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-    "format-icons": [" ", " ", " ", " ", " "]
-},
-
-"pulseaudio": {
-    "max-volume": 150,
-    "scroll-step": 10,
-
-    "format": "{icon}",
-    "tooltip-format": "{icon}  {volume}%",
-
-    "format-icons": {
-    "headphone": " ",
-    "format-muted": " ",
-    "default": [" ", " "]
-    },
-
-    "on-click": "pavucontrol"
-},
-
-"hyprland/workspaces": {
+  "hyprland/workspaces": {
 
     "format":"{icon}",
     "icon-size": 32,
@@ -82,59 +38,47 @@
         "8": "八",
         "9": "九",
         "sort-by-number": true
-    },
+    }
 
 },
 
-    "wlr/taskbar": {
-    "format": "{icon} {title:.18}",
-    "icon-size": 18,
-    "spacing": 3,
-    "on-click-middle": "close",
-    "tooltip-format": "{title}",
-    "ignore-list": [],
-    "on-click": "activate"
-  },
-
-"tray": {
-    "icon-size": 16,
+  "tray": {
+    "icon-size": 20,
     "spacing": 8
-},
-
-"clock": {
-    "format": " {:%R %d %B %Y}  ",
-    "tooltip-format": " {:%d %B %Y}",
-    "on-click": "xdg-open https://calendar.google.com",
-  },
-
-"memory": {
-    "format": "󰍛 {}%",
-    "format-alt": "󰍛 {used}/{total} GiB",
-    "interval": 5
   },
 
   "cpu": {
-    "format": "󰻠 {usage}%",
-    "format-alt": "󰻠 {avg_frequency} GHz",
-    "interval": 5
+    "format": "<span color='#191724' bgcolor='#ea9d34'> CPU </span> {usage}%",
+    "tooltip": false,
+    "interval": 1,
+    "on-click": "kitty btop"
   },
 
-"group/controlCenter": {
-	"orientation": "horizontal",
-	"modules": [
-			"pulseaudio",
-			"bluetooth",
-			"battery",
-		]
-},
+  "pulseaudio": {
+    "format": "<span color='#191724' bgcolor='#6e6a86'> VOL </span> {volume}%",
+    "format-muted": "<span color='#191724' bgcolor='#ea6962'> MUTE </span> {volume}%",
+    "format-bluetooth": "<span color='#191724' bgcolor='#6e6a86'> BLU </span> {volume}%",
+    "format-bluetooth-muted": "<span color='#191724' bgcolor='#ea6962'> MUTE </span> {volume}%",
+    "format-source": "{volume}% ",
+    "on-click": "pavucontrol",
+    "tooltip": false,
+    "max-volume": 130
+  },
+  "battery": {
+    "interval": 1,
+    "states": {
+      "good": 99,
+      "warning": 40,
+      "critical": 15
+    },
+    "format": "<span color='#191724' bgcolor='#c4a7e7'> BAT </span> {capacity}%",
+    "tooltip": false
+  },
 
-"group/leftSide": {
-	"orientation": "horizontal",
-	"modules": ["memory", "cpu"]
-},
-
-"group/rightSide": {
-	"orientation": "horizontal",
-	"modules": ["group/controlCenter", "clock"]
-	},
+  "clock": {
+    "format": "<span color='#191724' bgcolor='#8ec07c'> TIME </span> {:%I:%M %p,%d %b}",
+    "tooltip": false,
+    "interval":60,
+    "on-click": "xdg-open https://calendar.proton.me"
+  }
 }

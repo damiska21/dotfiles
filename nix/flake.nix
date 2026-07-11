@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.11";
+    nixpkgs.url = "nixpkgs/nixos-26.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     affinity-nix.url = "github:mrshmllow/affinity-nix";
     matugen.url = "github:InioX/Matugen";
@@ -13,9 +13,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    musnix  = { url = "github:musnix/musnix"; };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, zen-browser, unstable, affinity-nix, matugen, helium, ... }:
+  outputs = { self, nixpkgs, nixos-hardware, musnix,  zen-browser, unstable, affinity-nix, matugen, helium, ... }:
   let
     system = "x86_64-linux";
     
@@ -72,6 +73,7 @@
           ];
         }
         nixos-hardware.nixosModules.lenovo-ideapad-15arh05
+        musnix.nixosModules.musnix
       ];
     };
   };
