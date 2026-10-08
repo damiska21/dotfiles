@@ -12,11 +12,11 @@
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    #nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     musnix  = { url = "github:musnix/musnix"; };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, musnix,  zen-browser, unstable, affinity-nix, matugen, helium, ... }:
+  outputs = { self, nixpkgs, musnix, zen-browser, unstable, affinity-nix, matugen, helium, ... }:
   let
     system = "x86_64-linux";
     
@@ -24,7 +24,6 @@
     pkgs = import nixpkgs {
       inherit system;
       config = {
-        android_sdk.accept_license = true;
         allowUnfree = true;
       };
     };
@@ -37,14 +36,6 @@
     };
 
     buildToolsVersion = "34.0.0";
-
-    androidComposition = pkgs.androidenv.composeAndroidPackages {
-      buildToolsVersions = [ buildToolsVersion ];
-      platformVersions   = [ "34" ];
-      abiVersions        = [ "arm64-v8a" ];
-    };
-
-    androidSdk = androidComposition.androidsdk;
 
   in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -61,9 +52,11 @@
             
           }++ [
             # packages from unstable go here like this pkgsUnstable.audacity
-            affinity-nix.packages.${system}.v3
+            # affinity-nix.packages.affinity-v3 pls fix
             matugen.packages.${system}.default
             helium.packages.${system}.default
+            pkgsUnstable.bottles
+            pkgsUnstable.cisco-packet-tracer_9
           ];
 
           fonts.fontconfig.enable = true;
@@ -72,7 +65,7 @@
             ipafont #normal japanese font, the default one is pretty much unreadable
           ];
         }
-        nixos-hardware.nixosModules.lenovo-ideapad-15arh05
+        #nixos-hardware.nixosModules.lenovo-ideapad-15arh05
         musnix.nixosModules.musnix
       ];
     };

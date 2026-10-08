@@ -89,6 +89,9 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
     graphics.enable = true;
+    nvidia = {
+    open = false;
+  };
   };
   programs.steam = {
     enable = true;
@@ -115,7 +118,6 @@
 
   #networking.firewall.allowedTCPPorts = [ 8081 ];#expo go
   virtualisation.docker.enable = true;
-  hardware.nvidia-container-toolkit.enable = true;
 
   programs.zsh.enable = true;
 

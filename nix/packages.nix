@@ -21,15 +21,15 @@ with pkgs;
   #basic programy
   qimgv syncthing file-roller vlc gparted qalculate-qt micro
   #advanced programy
-  bottles spotify discord beeper anki twingate audacity keepassxc
+  spotify discord beeper anki twingate audacity keepassxc
   heroic protonup-qt protonplus mangohud reaper orca-slicer
   #x11 wm
   xinit xorgserver xauth
   #obsidian
   obsidian nodejs_22 # node na quartz
   #game dev / coding
-  vscode libresprite android-studio code-cursor opencode 
-  python315
+  vscode libresprite code-cursor opencode 
+  python314 python314Packages.dbus-python
   godotPackages_4_5.godot
   #keyboard remapper
   kanata
@@ -41,6 +41,8 @@ with pkgs;
   transmission_4 #torrent klient
   termius #ssh klient
 
+  #die schoole
+  libreoffice
 docker
   ntfs3g
   #web browser
