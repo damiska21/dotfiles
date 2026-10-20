@@ -32,7 +32,36 @@
     LC_TIME            = "cs_CZ.UTF-8";
   };
 
+programs.nix-ld.enable = true;
+programs.nix-ld.libraries = with pkgs; [
+  # base
+  stdenv.cc.cc.lib
+  zlib
+  zstd
+  glib
+  dbus
+  fontconfig
+  freetype
+  libGL
+  libxkbcommon
 
+  # Qt xcb plugin
+  xcb-util-cursor        # the "libxcb-cursor0" Qt is asking for
+   #xcb-util-image
+  #xcb-util-keysyms
+  #xcb-util-renderutil
+  #xcb-util-wm
+  libxcb
+  xorg.libX11
+  xorg.libXext
+  xorg.libXrender
+  xorg.libXi
+  xorg.libSM
+  xorg.libICE
+
+  # Qt wayland plugin
+  wayland
+];
   #bluetooth
   hardware.bluetooth = {
     enable = true;

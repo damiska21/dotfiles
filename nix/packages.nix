@@ -8,8 +8,8 @@ with pkgs;
   kitty fastfetch zsh oh-my-posh lsd btop
   #git a jeho auth
   git gh
-  #desktop veci: top bar, otevirac programu, wallpaper, sit, kurzor, color picker
-  waybar rofi awww networkmanagerapplet hyprcursor hyprpicker
+  #desktop veci: top bar, otevirac programu, wallpaper, sit, kurzor, color picker, color generator
+  waybar rofi awww networkmanagerapplet hyprcursor hyprpicker pywal16
   #bluetooth
   bluez blueman
   #simple screenshot a screencapture
@@ -21,14 +21,15 @@ with pkgs;
   #basic programy
   qimgv syncthing file-roller vlc gparted qalculate-qt micro
   #advanced programy
-  spotify discord beeper anki twingate audacity keepassxc
+  spotify discord discordo beeper anki twingate audacity keepassxc
   heroic protonup-qt protonplus mangohud reaper orca-slicer
+  librewolf
   #x11 wm
   xinit xorgserver xauth
   #obsidian
   obsidian nodejs_22 # node na quartz
   #game dev / coding
-  vscode libresprite code-cursor opencode 
+  vscode libresprite code-cursor opencode jetbrains.idea
   python314 python314Packages.dbus-python
   godotPackages_4_5.godot
   #keyboard remapper
