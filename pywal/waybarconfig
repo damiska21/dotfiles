@@ -1,0 +1,81 @@
+{
+  "style": "~/.config/waybar/style.css",
+  "layer": "top",
+  "height": 40,
+  "spacing": 0,
+
+  "modules-left": [
+    "clock"
+  ],
+
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+
+  "modules-right": [
+    "tray",
+    "cpu",
+    "pulseaudio",
+    "battery"
+  ],
+
+  "hyprland/workspaces": {
+    "format": "{{icon}}",
+    "icon-size": 32,
+    "spacing": 16,
+
+    "on-scroll-up": "hyprctl dispatch workspace r+1",
+    "on-scroll-down": "hyprctl dispatch workspace r-1",
+
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "sort-by-number": true
+    }
+  },
+
+  "tray": {
+    "icon-size": 20,
+    "spacing": 8
+  },
+
+  "cpu": {
+    "format": "<span color='{background}' bgcolor='{color6}'> CPU </span> {{usage}}%",
+    "tooltip": false,
+    "interval": 1,
+    "on-click": "kitty btop"
+  },
+
+  "pulseaudio": {
+    "format": "<span color='{background}' bgcolor='{color5}'> VOL </span> {{volume}}%",
+    "format-source": "{{volume}}% ",
+    "on-click": "pavucontrol",
+    "tooltip": false,
+    "max-volume": 130
+  },
+
+  "battery": {
+    "interval": 1,
+    "states": {
+      "good": 99,
+      "warning": 40,
+      "critical": 15
+    },
+    "format": "<span color='{background}' bgcolor='{color2}'> BAT </span> {{capacity}}%",
+    "tooltip": false
+  },
+
+  "clock": {
+    "format": "<span color='{background}' bgcolor='{color4}'> TIME </span> {{:%I:%M %p,%d %b}}",
+    "tooltip": false,
+    "interval": 60,
+    "on-click": "xdg-open https://calendar.proton.me"
+  }
+}

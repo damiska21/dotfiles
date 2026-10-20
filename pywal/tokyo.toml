@@ -1,0 +1,73 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+final_space = true
+version = 3
+
+[[blocks]]
+alignment = "left"
+leading_diamond = "<blue>┏</>"
+type = "prompt"
+newline = true
+
+  [[blocks.segments]]
+  foreground = "red"
+  style = "diamond"
+  template = "[<lightWhite></> RAM: {{ (div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB]"
+  type = "sysinfo"
+
+  [[blocks.segments]]
+  foreground = "red"
+  style = "diamond"
+  template = "[<lightWhite></> {{ .FormattedMs }}s]"
+  type = "executiontime"
+
+    [blocks.segments.properties]
+    style = "dallas"
+    threshold = 0
+
+[[blocks]]
+alignment = "left"
+newline = true
+leading_diamond = "<blue>┣</>"
+type = "prompt"
+
+  [[blocks.segments]]
+  foreground = "cyan"
+  style = "diamond"
+  template = "[<lightWhite></> <yellow>{{ .Path }}</>]"
+
+  type = "path"
+
+    [blocks.segments.properties]
+    style = "full"
+
+  [[blocks.segments]]
+  foreground = "magenta"
+  style = "plain"
+  template = "[<green>{{ .UpstreamIcon }} </>{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <lightWhite></> {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} <lightWhite></> {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} <lightWhite></> {{ .StashCount }}{{ end }}]"
+  type = "git"
+
+    [blocks.segments.properties]
+    fetch_status = true
+    fetch_upstream_icon = true
+
+  [[blocks.segments]]
+  foreground = "magenta"
+  type = "nix-shell"
+  template = "{{ if not (contains .Type \"unknown\") }}[{{ .Type }}]{{ end }}"
+
+[[blocks]]
+alignment = "left"
+newline = true
+leading_diamond = "<blue>└─</>"
+type = "prompt"
+
+  [[blocks.segments]]
+  style = "diamond"
+  template = ">"
+  type = "text"
+
+[transient_prompt]
+foreground = "cyan"
+background = "transparent"
+template = "-> "
+newline = true

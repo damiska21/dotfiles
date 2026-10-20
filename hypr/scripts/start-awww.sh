@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-awww-daemon --no-cache &
+awww-daemon --no-cache  || return $? &
 
-WALLDIR="$HOME/Pictures/wallpaper"
-FILE=$(find "$WALLDIR" -type f | shuf -n 1)
-
-matugen image "$FILE"
+wal -n -i "$HOME/Pictures/wallpaper" || return $?
+sleep 2
+awww img --transition-type center "$(< "${HOME}/.cache/wal/wal")" || return $?
+/home/damiska/dotfiles/scripts/pywal-apply.sh

@@ -1,0 +1,8 @@
+@define-color base {background};
+@define-color text {color2};
+@define-color rose {color1};
+@define-color clock-color {color4};
+
+@define-color cpu-color {color6};
+@define-color vol-color {color5};
+@define-color bat-color {color2};

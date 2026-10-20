@@ -20,7 +20,8 @@ today=$(date +"%Y-%m-%d")
 
 # Squashne všechno do jednoho commitu
 git reset --soft HEAD~$ahead
-git commit -m "🧠 Squashed auto-commits for $today"
+read -rp "Zadej commit message: " commit_message
+git commit -m "$commit_message"
 git push origin master
 
 echo "✅ Push hotovej na master s jedním squashed commitem: $today"

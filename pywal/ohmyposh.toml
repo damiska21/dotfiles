@@ -1,0 +1,76 @@
+
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+version = 3
+final_space = true
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+leading_diamond = "<cyan>┏</>"
+
+  [[blocks.segments]]
+  type = "sysinfo"
+  style = "diamond"
+  foreground = "lightBlue"
+  template = "[<#ffffff>\ue266</> RAM: {{ (div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB]"
+
+  [[blocks.segments]]
+  type = "executiontime"
+  style = "diamond"
+  foreground = "blue"
+  template = '[<default></> {{ .FormattedMs }}s]'
+
+    [blocks.segments.properties]
+    style = "dallas"
+    threshold = 0
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+leading_diamond = "<cyan>┣</>"
+
+  [[blocks.segments]]
+  type = "path"
+  style = "diamond"
+  foreground = "yellow"
+  template = '[<default></> <yellow>{{ .Path }}</>]'
+
+    [blocks.segments.properties]
+    style = "full"
+
+  [[blocks.segments]]
+  type = "git"
+  style = "plain"
+  foreground = "green"
+  template = '[<default>{{ .UpstreamIcon }} </>{{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <default></> {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} <default></> {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} <default></> {{ .StashCount }}{{ end }}]'
+
+    [blocks.segments.properties]
+    fetch_status = true
+    fetch_upstream_icon = true
+
+  [[blocks.segments]]
+  type = "nix-shell"
+  foreground = "red"
+  style = "plain"
+  template = '{{ if not (contains .Type "unknown") }}[{{ .Type }}]{{ end }}'
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+color="cyan"
+
+  [[blocks.segments]]
+  type = "text"
+  style = "plain"
+  foreground = "cyan"
+  color="cyan"
+  template = "└─>"
+
+[transient_prompt]
+foreground = "white"
+background = "transparent"
+template = "-> "
+newline = true

@@ -1,0 +1,84 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+
+  "logo": {
+    "source": "~/.config/fastfetch/logo/*",
+    "type": "kitty",
+    "height": 14,
+    "padding": {
+      "top": 1
+    }
+  },
+
+  "display": {
+    "separator": " "
+  },
+
+  "modules": [
+    "break",
+    "break",
+
+    {
+      "type": "title",
+      "format": "  {#red}{}{#}@{#red}{}{#}"
+    },
+
+    {
+      "type": "custom",
+      "key": "┌──────────────────────────────────┐",
+      "keyColor": "blue",
+      "value": ""
+    },
+
+    "break",
+
+    {
+      "type": "os",
+      "key": "   ",
+      "keyColor": "blue",
+      "format": "{3} {12}"
+    },
+
+    {
+      "type": "kernel",
+      "key": "   ",
+      "keyColor": "magenta"
+    },
+
+    {
+      "type": "shell",
+      "key": "   ",
+      "keyColor": "cyan"
+    },
+
+    {
+      "type": "uptime",
+      "key": "   ",
+      "keyColor": "yellow"
+    },
+
+    {
+      "type": "memory",
+      "key": "   ",
+      "keyColor": "green"
+    },
+
+    "break",
+
+    {
+      "type": "custom",
+      "key": "└──────────────────────────────────┘",
+      "keyColor": "blue",
+      "value": ""
+    },
+
+    {
+      "type": "colors",
+      "paddingLeft": 10,
+      "symbol": "circle"
+    },
+
+    "break",
+    "break"
+  ]
+}
