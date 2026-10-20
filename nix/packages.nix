@@ -19,10 +19,12 @@ with pkgs;
   #file manager a jeho dependencies
   nemo nemo-fileroller
   #basic programy
-  qimgv syncthing file-roller vlc gparted qalculate-qt micro
+  qimgv syncthing file-roller vlc gparted qalculate-qt micro libreoffice
   #advanced programy
   spotify discord discordo beeper anki twingate audacity keepassxc
-  heroic protonup-qt protonplus mangohud reaper orca-slicer
+  heroic protonup-qt protonplus mangohud reaper 
+  #3d
+  orca-slicer openscad
   librewolf
   #x11 wm
   xinit xorgserver xauth
@@ -48,4 +50,7 @@ docker
   ntfs3g
   #web browser
   zen-browser.packages.${system}.twilight-official
+
+  # ai
+  llama-cpp-vulkan
 ]

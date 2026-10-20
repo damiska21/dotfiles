@@ -64,17 +64,6 @@
     "tooltip": false,
     "max-volume": 130
   },
-  "battery": {
-    "interval": 1,
-    "states": {
-      "good": 99,
-      "warning": 40,
-      "critical": 15
-    },
-    "format": "<span color='#191724' bgcolor='#c4a7e7'> BAT </span> {capacity}%",
-    "tooltip": false
-  },
-
   "clock": {
     "format": "<span color='#191724' bgcolor='#8ec07c'> TIME </span> {:%I:%M %p,%d %b}",
     "tooltip": false,

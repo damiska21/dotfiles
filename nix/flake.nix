@@ -2,7 +2,6 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-26.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    affinity-nix.url = "github:mrshmllow/affinity-nix";
     matugen.url = "github:InioX/Matugen";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -41,6 +40,7 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
+        musnix.nixosModules.musnix
         ./configuration.nix
         {
           nixpkgs.config.allowUnfree = true;
@@ -52,9 +52,9 @@
             
           }++ [
             # packages from unstable go here like this pkgsUnstable.audacity
-            # affinity-nix.packages.affinity-v3 pls fix
             matugen.packages.${system}.default
             helium.packages.${system}.default
+            pkgsUnstable.tiny-wii-backup-manager
             pkgsUnstable.bottles
             pkgsUnstable.cisco-packet-tracer_9
           ];
@@ -65,8 +65,6 @@
             ipafont #normal japanese font, the default one is pretty much unreadable
           ];
         }
-        #nixos-hardware.nixosModules.lenovo-ideapad-15arh05
-        musnix.nixosModules.musnix
       ];
     };
   };

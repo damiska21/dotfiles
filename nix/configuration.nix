@@ -115,26 +115,14 @@ programs.nix-ld.libraries = with pkgs; [
     NIXOS_OZONE_WL = "1";
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware = {
-    graphics.enable = true;
-    nvidia = {
-    open = false;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
   };
-  };
+  nixpkgs.config.rocmSupport = true;
   programs.steam = {
     enable = true;
   };
-  programs = {
-    gamescope = {
-      enable = true;
-      #capSysNice = true;
-    };
-    steam.gamescopeSession.enable = true;
-  };
-    programs.gamemode.enable = true;
-    programs.gamemode.enableRenice = true;
-  
   programs.hyprlock.enable = true;
 
 
@@ -145,12 +133,7 @@ programs.nix-ld.libraries = with pkgs; [
     extraGroups  = [ "networkmanager" "wheel" "input" "kvm" "adbusers" "dialout" "plugdev" "docker" "wireshark" "gamemode"];
   };
 
-  #networking.firewall.allowedTCPPorts = [ 8081 ];#expo go
-  virtualisation.docker.enable = true;
-
   programs.zsh.enable = true;
-
-  services.twingate.enable = true;
 #kanata (keyboard remapper) nastavení na fungování přes hypr
   services.kanata.enable = true;
   boot.kernelModules = [ "uinput" "rtw88" ];#rtw je na ac600
