@@ -11,11 +11,9 @@
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    musnix  = { url = "github:musnix/musnix"; };
   };
 
-  outputs = { self, nixpkgs, musnix, zen-browser, unstable, affinity-nix, matugen, helium, ... }:
+  outputs = { self, nixpkgs, zen-browser, unstable, matugen, helium, ... }:
   let
     system = "x86_64-linux";
     
@@ -40,7 +38,6 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        musnix.nixosModules.musnix
         ./configuration.nix
         {
           nixpkgs.config.allowUnfree = true;

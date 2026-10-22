@@ -122,6 +122,9 @@ programs.nix-ld.libraries = with pkgs; [
   nixpkgs.config.rocmSupport = true;
   programs.steam = {
     enable = true;
+    extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
   };
   programs.hyprlock.enable = true;
 
