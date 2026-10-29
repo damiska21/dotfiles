@@ -45,6 +45,9 @@ programs.nix-ld.libraries = with pkgs; [
   libGL
   libxkbcommon
 
+  nspr
+  
+
   # Qt xcb plugin
   xcb-util-cursor        # the "libxcb-cursor0" Qt is asking for
    #xcb-util-image
