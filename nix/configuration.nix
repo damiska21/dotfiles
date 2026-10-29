@@ -45,7 +45,7 @@ programs.nix-ld.libraries = with pkgs; [
   libGL
   libxkbcommon
 
-  nspr nss atk
+  nspr nss atk cups
   
 
   # Qt xcb plugin
