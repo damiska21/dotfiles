@@ -22,7 +22,7 @@ with pkgs;
   qimgv syncthing file-roller vlc gparted qalculate-qt micro libreoffice
   #advanced programy
   spotify discord discordo beeper anki twingate audacity keepassxc
-  heroic protonup-qt protonplus mangohud reaper mixxx yt-dlp
+  heroic protonup-qt protonplus mangohud reaper mixxx yt-dlp picard
   #3d
   orca-slicer openscad
   librewolf
