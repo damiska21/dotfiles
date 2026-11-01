@@ -9,7 +9,7 @@ with pkgs;
   #git a jeho auth
   git gh
   #desktop veci: top bar, otevirac programu, wallpaper, sit, kurzor, color picker, color generator
-  waybar rofi awww networkmanagerapplet hyprcursor hyprpicker pywal16
+  waybar rofi awww networkmanagerapplet hyprcursor hyprpicker hyprsunset pywal16
   #bluetooth
   bluez blueman
   #simple screenshot a screencapture
