@@ -8,4 +8,6 @@ kanata -c /home/damiska/.config/kanata/main.kbd &
 
 hyprlock & 
 
-~/.config/hypr/scripts/start-awww.sh
+~/.config/hypr/scripts/start-awww.sh &
+
+hyprsunset -t 4000

@@ -47,6 +47,8 @@ programs.nix-ld.libraries = with pkgs; [
 
   nspr nss atk cups cairo gtk3 pango libxcomposite libxdamage libxfixes libxrandr libgbm expat
   alsa-lib
+  libdrm
+    mesa
 
   # Qt xcb plugin
   xcb-util-cursor        # the "libxcb-cursor0" Qt is asking for
