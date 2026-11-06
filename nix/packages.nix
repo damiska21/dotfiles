@@ -7,7 +7,7 @@ with pkgs;
   #terminál
   kitty fastfetch zsh oh-my-posh lsd btop
   #git a jeho auth
-  git gh
+  gh
   #desktop veci: top bar, otevirac programu, wallpaper, sit, kurzor, color picker, color generator
   waybar rofi awww networkmanagerapplet hyprcursor hyprpicker hyprsunset pywal16
   #bluetooth

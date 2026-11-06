@@ -172,6 +172,11 @@ programs.nix-ld.libraries = with pkgs; [
     };
   };
 
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+  };
+
   services.gvfs.enable = true;
   programs.fuse.userAllowOther = true;
 
