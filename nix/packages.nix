@@ -31,7 +31,7 @@ with pkgs;
   #obsidian
   obsidian nodejs_22 # node na quartz
   #game dev / coding
-  vscode libresprite code-cursor opencode jetbrains.idea
+  vscode libresprite code-cursor jetbrains.idea
   python314 python314Packages.dbus-python
   godotPackages_4_5.godot
   #keyboard remapper

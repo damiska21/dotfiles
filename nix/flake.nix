@@ -54,6 +54,7 @@
             pkgsUnstable.tiny-wii-backup-manager
             pkgsUnstable.bottles
             pkgsUnstable.cisco-packet-tracer_9
+            pkgsUnstable.opencode
           ];
 
           fonts.fontconfig.enable = true;
