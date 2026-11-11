@@ -45,6 +45,8 @@ programs.nix-ld.libraries = with pkgs; [
   libGL
   libxkbcommon
 
+  harfbuzz
+
   nspr nss atk cups cairo gtk3 pango libxcomposite libxdamage libxfixes libxrandr libgbm expat
   alsa-lib
   vulkan-loader
