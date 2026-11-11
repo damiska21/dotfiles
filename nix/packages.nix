@@ -34,6 +34,7 @@ with pkgs;
   vscode libresprite code-cursor opencode jetbrains.idea
   python314 python314Packages.dbus-python
   godotPackages_4_5.godot
+  jdk17
   #keyboard remapper
   kanata
   #minecraft
