@@ -136,6 +136,30 @@ programs.nix-ld.libraries = with pkgs; [
         proton-ge-bin
       ];
   };
+
+
+
+
+
+services.xserver.videoDrivers = [ "nvidia" ];
+  hardware = {
+    nvidia = {
+    open = false;
+  };
+  };
+  programs = {
+    gamescope = {
+      enable = true;
+      #capSysNice = true;
+    };
+    steam.gamescopeSession.enable = true;
+  };
+    programs.gamemode.enable = true;
+    programs.gamemode.enableRenice = true;
+
+
+
+  
   programs.hyprlock.enable = true;
 
 

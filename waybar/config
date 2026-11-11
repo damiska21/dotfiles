@@ -51,7 +51,7 @@
     "format": "<span color='#191724' bgcolor='#ea9d34'> CPU </span> {usage}%",
     "tooltip": false,
     "interval": 1,
-    "on-click": "kitty btop"
+    "on-click": "hyprctl dispatch exec '[workspace current] kitty btop'"
   },
 
   "pulseaudio": {
@@ -60,7 +60,7 @@
     "format-bluetooth": "<span color='#191724' bgcolor='#6e6a86'> BLU </span> {volume}%",
     "format-bluetooth-muted": "<span color='#191724' bgcolor='#ea6962'> MUTE </span> {volume}%",
     "format-source": "{volume}% ",
-    "on-click": "pavucontrol",
+    "on-click": "hyprctl dispatch exec '[workspace current] pavucontrol'",
     "tooltip": false,
     "max-volume": 130
   },
