@@ -64,12 +64,12 @@ programs.nix-ld.libraries = with pkgs; [
   #xcb-util-renderutil
   #xcb-util-wm
   libxcb
-  xorg.libX11
-  xorg.libXext
-  xorg.libXrender
-  xorg.libXi
-  xorg.libSM
-  xorg.libICE
+  libX11
+  libXext
+  libXrender
+  libXi
+  libSM
+  libICE
 
   # Qt wayland plugin
   wayland

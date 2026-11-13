@@ -5,7 +5,7 @@ with pkgs;
 
 [
   #terminál
-  kitty fastfetch zsh oh-my-posh lsd btop
+  kitty fastfetch zsh oh-my-posh lsd btop libqalculate
   #git a jeho auth
   gh
   #desktop veci: top bar, otevirac programu, wallpaper, sit, kurzor, color picker, color generator
