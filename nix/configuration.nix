@@ -206,6 +206,8 @@ services.xserver.videoDrivers = [ "nvidia" ];
   services.gvfs.enable = true;
   programs.fuse.userAllowOther = true;
 
+networking.firewall.allowedTCPPorts = [ 8081 ];
+
   services.getty.autologinUser = "damiska";
   #automatickej update všech packages
   system.autoUpgrade.enable = true;
