@@ -19,7 +19,7 @@ with pkgs;
   #file manager a jeho dependencies
   nemo nemo-fileroller
   #basic programy
-  qimgv syncthing file-roller vlc gparted qalculate-qt micro libreoffice
+  qimgv syncthing file-roller vlc gparted qalculate-qt micro libreoffice floorp-bin
   #advanced programy
   spotify discord discordo beeper anki twingate audacity keepassxc
   heroic protonup-qt protonplus mangohud reaper mixxx yt-dlp picard
