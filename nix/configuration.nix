@@ -219,11 +219,11 @@ services.xserver.videoDrivers = [ "nvidia" ];
 
 
   # Mount that extra filesystem
-  fileSystems."/mnt/Bordel" = {
-    device = "/dev/disk/by-uuid/3e2492b6-23cd-4f44-9fdf-0b7a74bac4f9";
-    fsType  = "ext4";
-    options = [ "rw" "user" "exec" "nofail" "x-systemd.after=network.target" ];
-  };
+  #fileSystems."/mnt/Bordel" = {
+  #  device = "/dev/disk/by-uuid/3e2492b6-23cd-4f44-9fdf-0b7a74bac4f9";
+  #  fsType  = "ext4";
+  #  options = [ "rw" "user" "exec" "nofail" "x-systemd.after=network.target" ];
+  #};
 
   system.stateVersion = "25.11";
 
