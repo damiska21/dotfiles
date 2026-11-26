@@ -14,7 +14,7 @@
     luciole.url = "github:noctalia-dev/luciole";
   };
 
-  outputs = { self, nixpkgs, zen-browser, unstable, matugen, helium, luciole ... }:
+  outputs = { self, nixpkgs, zen-browser, unstable, matugen, helium, luciole, ... }:
   let
     system = "x86_64-linux";
     
