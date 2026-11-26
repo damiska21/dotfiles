@@ -11,9 +11,10 @@
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    luciole.url = "github:noctalia-dev/luciole";
   };
 
-  outputs = { self, nixpkgs, zen-browser, unstable, matugen, helium, ... }:
+  outputs = { self, nixpkgs, zen-browser, unstable, matugen, helium, luciole ... }:
   let
     system = "x86_64-linux";
     
@@ -51,6 +52,7 @@
             # packages from unstable go here like this pkgsUnstable.audacity
             matugen.packages.${system}.default
             helium.packages.${system}.default
+            luciole.packages.${system}.default
             pkgsUnstable.tiny-wii-backup-manager
             pkgsUnstable.bottles
             pkgsUnstable.cisco-packet-tracer_9
